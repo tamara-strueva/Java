@@ -26,8 +26,7 @@ public class Vector {
 
     //метод, вычисляющий скалярное произведение двух векторов
     public double calculateScalarProduct(Vector vector1, Vector vector2) {
-        double scalarProduct = vector1.x * vector2.x +
-                vector1.y * vector2.y + vector1.z * vector2.z;
+        double scalarProduct = vector1.x * vector2.x + vector1.y * vector2.y + vector1.z * vector2.z;
         System.out.println("Скалярное произведение векторов: " + scalarProduct);
         return scalarProduct;
     }
