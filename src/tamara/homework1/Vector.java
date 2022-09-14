@@ -53,6 +53,7 @@ public class Vector {
         double coordinateY = vector1.y + vector2.y;
         double coordinateZ = vector1.z + vector2.z;
         System.out.println("{" + coordinateX + "; " + coordinateY + "; " + coordinateZ + "}");
+        // возвращать новый вектор
     }
 
     public void subtractionOfVectors(Vector vector1, Vector vector2) {
@@ -60,6 +61,7 @@ public class Vector {
         double coordinateY = vector1.y - vector2.y;
         double coordinateZ = vector1.z - vector2.z;
         System.out.println("{" + coordinateX + "; " + coordinateY + "; " + coordinateZ + "}");
+        // возвращать новый вектор
     }
 
     public static void massiveOfVectors(int number) {
