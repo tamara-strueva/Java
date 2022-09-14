@@ -13,7 +13,6 @@ public class Matrix {
 
     public static void main(String[] args){
         Matrix a = new Matrix(3, 4);
-        a.printMatrix();
     }
 
     public void fillInMatrix(){
@@ -21,7 +20,7 @@ public class Matrix {
         // просить заполнить через консоль или рандом
     }
 
-    public void printMatrix() {
+    public void printOutMatrix() {
         for(int i=0; i<rows; i++){
             for(int j=0; j<columns; j++){
                 System.out.print(data[i][j] + " ");
