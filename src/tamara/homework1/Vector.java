@@ -17,8 +17,10 @@ public class Vector {
         this.z = z;
     }
 
-    public void getVector() {
+    public Vector getVector() {
+        Vector v = this;
         System.out.println("{" + this.x + "; " + this.y + "; " + this.z + "}");
+        return v;
     }
 
     //метод, вычисляющий длину вектора
@@ -58,7 +60,7 @@ public class Vector {
         double coordinateX = this.x + vector2.x;
         double coordinateY = this.y + vector2.y;
         double coordinateZ = this.z + vector2.z;
-        System.out.println("{" + coordinateX + "; " + coordinateY + "; " + coordinateZ + "}");
+        System.out.println("Сумма = {" + coordinateX + "; " + coordinateY + "; " + coordinateZ + "}");
         // возвращать новый вектор
     }
 
@@ -67,13 +69,21 @@ public class Vector {
         double coordinateX = this.x - vector2.x;
         double coordinateY = this.y - vector2.y;
         double coordinateZ = this.z - vector2.z;
-        System.out.println("{" + coordinateX + "; " + coordinateY + "; " + coordinateZ + "}");
+        System.out.println("Разница = {" + coordinateX + "; " + coordinateY + "; " + coordinateZ + "}");
         // возвращать новый вектор
     }
 
-    public static void massiveOfVectors(int number) {
-        int[] massive = new int[number];
-        // выведет список, в котором списками? хранятся векторы
+    public void massiveOfVectors(int number) {
+        Vector[] massive = new Vector[number];
+        for(int i = 0; i < number; i++){
+            Vector v = new Vector();
+            massive[i] = v;
+        }
+
+        for(int v = 0; v < number; v++){
+            System.out.println(massive[v].getVector());
+        }
+
     }
 
 }
