@@ -1,9 +1,9 @@
 package tamara.homework1;
 
 public class Matrix {
-    int[][] data = null;
-    int rows;
-    int columns;
+    private int[][] data = null;
+    private int rows;
+    private int columns;
 
     Matrix(int rows, int columns){
         this.rows = rows;
@@ -13,6 +13,7 @@ public class Matrix {
 
     public static void main(String[] args){
         Matrix a = new Matrix(3, 4);
+        a.printOutMatrix();
     }
 
     public void fillInMatrix(){
@@ -21,9 +22,9 @@ public class Matrix {
     }
 
     public void printOutMatrix() {
-        for(int i=0; i<rows; i++){
-            for(int j=0; j<columns; j++){
-                System.out.print(data[i][j] + " ");
+        for(int row = 0; row < rows; row++){
+            for(int column = 0; column < columns; column++){
+                System.out.print(data[row][column] + " ");
             }
             System.out.println();
         }
