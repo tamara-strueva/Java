@@ -6,7 +6,7 @@ public class Matrix {
     int rows;
     int columns;
 
-    Matrix(int rows, int columns){
+    public Matrix(int rows, int columns){
         this.rows = rows;
         this.columns = columns;
         this.data = new int[rows][columns];
@@ -14,34 +14,40 @@ public class Matrix {
 
     public static void main(String[] args){
         Matrix a = new Matrix(3, 4);
-        Matrix b = new Matrix(3, 4);
-        a.setMatrix(new int[][] {{1, 2, 3, 4}, {5, 6, 7, 8}});
-        a.getMatrix();
-//        System.out.println(a.toString());
+        a.setMatrix(new int[][] {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}});
+        Matrix b = new Matrix(3,4);
+        b.setMatrix(new int[][] {{12, 11, 10, 9}, {8, 7, 6, 5}, {4, 3, 2, 1}});
+        Matrix c = new Matrix(2, 2);
+        c.setMatrix(new int[][] {{1,2}, {3,4}});
+        c.multiplyMatrixOnNumber(4);
+//        a.getMatrix();
+//        System.out.println("&&&");
+//        b.getMatrix();
+//        System.out.println("***");
 //        a.addMatrix(b);
+//        a.subtractMatrix(b);
     }
 
     public Matrix setMatrix(int[][] array){
-        Matrix newMatrix = new Matrix(this.rows, this.columns);
-
+//        Matrix newMatrix = new Matrix(this.rows, this.columns);
         try {
             for (int row = 0; row < rows; row++) {
                 for (int column = 0; column < columns; column++) {
-                    newMatrix.data[row][column] = array[row][column];
+                    data[row][column] = array[row][column];
                 }
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
             System.out.println("!!Введенный массив не соразмерен матрице!!");
         }
 
-        return newMatrix;
+        return this;
     }
 
     public String toString() {
         return Arrays.deepToString(this.data);
     }
 
-    public int getMatrix() {
+    public Matrix getMatrix() {
         for(int row = 0; row < rows; row++){
             for(int column = 0; column < columns; column++){
                 System.out.print(data[row][column]);
@@ -49,7 +55,7 @@ public class Matrix {
             }
             System.out.println();
         }
-        return this.data[this.rows][this.columns];
+        return this;
     }
 
     // метод, вычисляющий сумму матриц
@@ -61,25 +67,55 @@ public class Matrix {
                 result.data[row][column] = this.data[row][column] + matrix2.data[row][column];
             }
         }
-        System.out.println(result.getMatrix());
-    }
-/*
-    public void multiplyOnNumber() {
-
+        result.getMatrix();
     }
 
-    public void multiplyMatrixes() {
+    public void subtractMatrix(Matrix matrix2) {
+        Matrix result = new Matrix(this.rows, this.columns);
 
+        for(int row = 0; row < rows; row++) {
+            for(int column = 0; column < columns; column++) {
+                result.data[row][column] = this.data[row][column] - matrix2.data[row][column];
+            }
+        }
+        result.getMatrix();
     }
 
-    public void transrose() {
-
+    public void transroseMatrix() {
+        Matrix newMatrix = new Matrix(this.columns, this.rows);
+        try {
+            for (int column = 0; column < columns; column++) {
+                for (int row = 0; row < rows; row++) {
+                    newMatrix.data[column][row] = this.data[row][column];
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            System.out.println("###");
+        }
+        newMatrix.getMatrix();
+//        return newMatrix;
     }
 
-    public void power() {
-
+    public void multiplyMatrixOnNumber(int number) {
+        try {
+            for (int column = 0; column < columns; column++) {
+                for (int row = 0; row < rows; row++) {
+                    this.data[row][column] = this.data[row][column] * number;
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            System.out.println("###");
+        }
+        this.getMatrix();
     }
-    */
+
+//    public void multiplyMatrixes() {
+//
+//    }
+
+//    public void power() {
+//
+//    }
 }
 
 //import java.util.Arrays;
