@@ -1,5 +1,5 @@
 package tamara.homework1;
-import java.util.Arrays;
+import java.util.*;
 
 public class Matrix {
     int[][] data = null;
@@ -15,11 +15,22 @@ public class Matrix {
     public static void main(String[] args){
         Matrix a = new Matrix(3, 4);
         a.setMatrix(new int[][] {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}});
+        a.getMatrix();
+        System.out.println();
+//        Matrix d = new Matrix(4, 2);
+//        d.setMatrix(new int[][] {{5, 3}, {6, 2}, {8, -7}, {-1, 4}});
+//        d.getMatrix();
         Matrix b = new Matrix(3,4);
         b.setMatrix(new int[][] {{12, 11, 10, 9}, {8, 7, 6, 5}, {4, 3, 2, 1}});
-        Matrix c = new Matrix(2, 2);
-        c.setMatrix(new int[][] {{1,2}, {3,4}});
-        c.multiplyMatrixOnNumber(4);
+        b.getMatrix();
+        System.out.println();
+        a.multiplyMatrixes(b);
+//        System.out.println();
+//        Matrix b = new Matrix(3,4);
+//        b.setMatrix(new int[][] {{12, 11, 10, 9}, {8, 7, 6, 5}, {4, 3, 2, 1}});
+//        Matrix c = new Matrix(2, 2);
+//        c.setMatrix(new int[][] {{1,2}, {3,4}});
+//        c.multiplyMatrixOnNumber(4);
 //        a.getMatrix();
 //        System.out.println("&&&");
 //        b.getMatrix();
@@ -29,7 +40,6 @@ public class Matrix {
     }
 
     public Matrix setMatrix(int[][] array){
-//        Matrix newMatrix = new Matrix(this.rows, this.columns);
         try {
             for (int row = 0; row < rows; row++) {
                 for (int column = 0; column < columns; column++) {
@@ -37,17 +47,13 @@ public class Matrix {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
-            System.out.println("!!Введенный массив не соразмерен матрице!!");
+            System.out.println("\u001B[31m Введенный массив не соразмерен матрице! \u001B[0m");
         }
 
         return this;
     }
 
-    public String toString() {
-        return Arrays.deepToString(this.data);
-    }
-
-    public Matrix getMatrix() {
+    public void getMatrix() {
         for(int row = 0; row < rows; row++){
             for(int column = 0; column < columns; column++){
                 System.out.print(data[row][column]);
@@ -55,7 +61,6 @@ public class Matrix {
             }
             System.out.println();
         }
-        return this;
     }
 
     // метод, вычисляющий сумму матриц
@@ -81,7 +86,7 @@ public class Matrix {
         result.getMatrix();
     }
 
-    public void transroseMatrix() {
+    public Matrix transroseMatrix() {
         Matrix newMatrix = new Matrix(this.columns, this.rows);
         try {
             for (int column = 0; column < columns; column++) {
@@ -90,10 +95,25 @@ public class Matrix {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException exception) {
-            System.out.println("###");
+            System.out.println("\u001B[31m что-то пошло не так \u001B[0m");
         }
         newMatrix.getMatrix();
-//        return newMatrix;
+        return newMatrix;
+    }
+
+    public Matrix transrosedMatrix() {
+        // для умножения, чтоб не выводился результат
+        Matrix newMatrix = new Matrix(this.columns, this.rows);
+        try {
+            for (int column = 0; column < columns; column++) {
+                for (int row = 0; row < rows; row++) {
+                    newMatrix.data[column][row] = this.data[row][column];
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            System.out.println("\u001B[31m что-то пошло не так \u001B[0m");
+        }
+        return newMatrix;
     }
 
     public void multiplyMatrixOnNumber(int number) {
@@ -109,34 +129,44 @@ public class Matrix {
         this.getMatrix();
     }
 
-//    public void multiplyMatrixes() {
-//
-//    }
+    public void multiplyMatrixes(Matrix matrix) {
+        if (this.columns == matrix.rows) {
+            Matrix result = new Matrix(this.rows, matrix.columns);
+            Matrix tempMatrix = matrix.transrosedMatrix();
+            int[][] resultOfMultyply = new int[this.rows][matrix.columns];
+            List tempResultList = new ArrayList();
+
+            for (int row1 = 0; row1 < this.rows; row1++) { // цикл по первой матрице, по ее строкам
+                for (int row2 = 0; row2 < matrix.columns; row2++) { // цикл по строкам транспонированной матрицы
+                    int res = 0;
+//                    System.out.println("#");
+                    for (int column = 0; column < this.columns; column++) { // цикл по колонкам (они одинаковые в любом случае)
+                        // сумма 1 и 1, сумма 1 и 2
+                        int r = this.data[row1][column] * tempMatrix.data[row2][column];
+                        res += r;
+//                        System.out.println("&" + res);
+                    }
+                    tempResultList.add(res); // добаление значения в общий список
+                }
+            }
+
+            for (int row = 0; row < result.rows; row++) {
+                for (int column = 0; column < result.columns; column++) {
+                    resultOfMultyply[row][column] = (int) tempResultList.get(row * result.columns + column);
+                }
+            }
+//            System.out.println(Arrays.deepToString(resultOfMultyply));
+
+            result.setMatrix(resultOfMultyply);
+            result.getMatrix();
+
+        }else {
+            System.out.println("\u001B[31m Невозможно перемножить матрицы \u001B[0m");
+        }
+
+    }
 
 //    public void power() {
 //
 //    }
 }
-
-//import java.util.Arrays;
-//
-//public class Matrix {
-//
-//    int[][] matrix;
-//
-//    public Matrix(int[][] matrix){
-//        this.matrix = matrix;
-//    }
-//
-//    public String toString(){
-//        return Arrays.deepToString(matrix);
-//    }
-//
-//    public Matrix sumMatrix(Matrix matrixA, Matrix matrixB){
-//        Matrix result = new Matrix(new int[matrix.length][matrix.length]);
-//        for (int i = 0; i < matrixA.matrix.length; i++)
-//            for (int j = 0; j < matrixA.matrix.length; j++)
-//                result.matrix[i][j] = matrixA.matrix[i][j] + matrixB.matrix[i][j];
-//        return result;
-//    }
-//}
