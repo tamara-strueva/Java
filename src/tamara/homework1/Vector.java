@@ -17,6 +17,10 @@ public class Vector {
         this.z = z;
     }
 
+    public String toString() {
+        return "{" + x + "; " + y + "; " + z + "}";
+    }
+
     public Vector getVector() {
         Vector v = this;
         System.out.println("{" + this.x + "; " + this.y + "; " + this.z + "}");
@@ -76,14 +80,23 @@ public class Vector {
     public void massiveOfVectors(int number) {
         Vector[] massive = new Vector[number];
         for(int i = 0; i < number; i++){
-            Vector v = new Vector();
+            Vector v = new Vector((-50) + (int) (Math.random() * 50),
+                    (-15) + (int) (Math.random() * 50),(-50) + (int) (Math.random() * 50));
             massive[i] = v;
         }
-
-        for(int v = 0; v < number; v++){
-            System.out.println(massive[v].getVector());
+//        System.out.println(Arrays.deepToString(massive));
+        for (int v = 0; v < number; v++) {
+            System.out.println(massive[v].toString());
         }
-
     }
 
 }
+
+//    public static Vector[] generate(int number) {
+//        Vector[] vectors = new Vector[number];
+//        for (int i = 0; i < number; i++) {
+//            vectors[i] = new Vector(Math.random(),Math.random(),Math.random());
+//        }
+//        System.out.println(Arrays.deepToString(vectors));
+//        return vectors;
+//    }

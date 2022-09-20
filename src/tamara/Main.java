@@ -1,38 +1,28 @@
 package tamara;
 
-import tamara.homework1.Matrix;
+import tamara.homework1.*;
+import tamara.homework1.Shapes.*;
 
 import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+//        Vector v = new Vector();
+//        v.massiveOfVectors(7);
 
-//        int[][] a = {{1, 2, 3, 4, 5}, {1, 23}};
-//        int[][] b = {{1, 2, 3, 4, 5}};
-
-//        for (int i = 0; i < 1; i++) {
-//            int r = 0;
-//            for (int j = 0; j < 5; j++) {
-//                r++;
-//                System.out.println("i = " + i + "; j = " + j + "; r = " + r);
-//                System.out.println(a[i][j] + ", " + b[i][j]);
-//                }
-//            }
-
-//        int data[] = new int[] {10, 20, 30, 40, 50, 60};
-//        int width = 3;
-//        int height = 2;
+//        Box box = new Box(900);
 //
-//        int[][] result = new int[height][width];
+//        Ball ball1 = new Ball(3);
+//        Cylinder cylinder1 = new Cylinder(2, 4);
+//        Pyramid pyramid1 = new Pyramid(7, 5);
 //
-//        for(int i = 0; i < height; i++) {
-//            for(int j = 0; j < width; j++) {
-//                result[i][j] = data[i * width + j];
-//            }
-//        }
-//        System.out.println(Arrays.deepToString(result));
+//        System.out.println(box.add(ball1));
+//        System.out.println(box.add(cylinder1));
+//        System.out.println(box.add(pyramid1));
 
-
+//        ArrayOfValues arr = new ArrayOfValues(new int[] {1,2,3},
+//                new int[] {1,2,10});
+//        arr.getElement();
     }
 }
 

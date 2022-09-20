@@ -26,13 +26,13 @@ public class Matrix {
 //        Matrix d = new Matrix(4, 2);
 //        d.setMatrix(new int[][] {{5, 3}, {6, 2}, {8, -7}, {-1, 4}});
 //        d.getMatrix();
-
+        Matrix e = new Matrix(2, 2);
+        e.setMatrix(new int[][] {{-2, 5}, {4, -3}});
 //        a.multiplyMatrixes(b);
 //        c.multiplyMatrixOnNumber(4);
 //        a.addMatrix(b);
 //        a.subtractMatrix(b);
-        Matrix e = new Matrix(2, 2);
-        e.setMatrix(new int[][] {{-2, 5}, {4, -3}});
+
         e.powerMatrix(3);
     }
     // метод, выводящий матрицу на экран
