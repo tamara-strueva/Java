@@ -19,18 +19,19 @@ public class Main {
 //                }
 //            }
 
-        int data[] = new int[] {10, 20, 30, 40, 50, 60};
-        int width = 3;
-        int height = 2;
+//        int data[] = new int[] {10, 20, 30, 40, 50, 60};
+//        int width = 3;
+//        int height = 2;
+//
+//        int[][] result = new int[height][width];
+//
+//        for(int i = 0; i < height; i++) {
+//            for(int j = 0; j < width; j++) {
+//                result[i][j] = data[i * width + j];
+//            }
+//        }
+//        System.out.println(Arrays.deepToString(result));
 
-        int[][] result = new int[height][width];
-
-        for(int i = 0; i < height; i++) {
-            for(int j = 0; j < width; j++) {
-                result[i][j] = data[i * width + j];
-            }
-        }
-        System.out.println(Arrays.deepToString(result));
 
     }
 }
