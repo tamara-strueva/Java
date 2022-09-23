@@ -1,7 +1,7 @@
 package tamara.homework1;
 
 public class Vector {
-    double x, y, z;
+    int x, y, z;
 
     // конструктор, по умолчанию все координаты = 0
     public Vector() {
@@ -91,12 +91,3 @@ public class Vector {
     }
 
 }
-
-//    public static Vector[] generate(int number) {
-//        Vector[] vectors = new Vector[number];
-//        for (int i = 0; i < number; i++) {
-//            vectors[i] = new Vector(Math.random(),Math.random(),Math.random());
-//        }
-//        System.out.println(Arrays.deepToString(vectors));
-//        return vectors;
-//    }

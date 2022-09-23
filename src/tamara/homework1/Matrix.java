@@ -26,15 +26,15 @@ public class Matrix {
 //        Matrix d = new Matrix(4, 2);
 //        d.setMatrix(new int[][] {{5, 3}, {6, 2}, {8, -7}, {-1, 4}});
 //        d.getMatrix();
-        Matrix e = new Matrix(2, 2);
-        e.setMatrix(new int[][] {{-2, 5}, {4, -3}});
+//        Matrix e = new Matrix(2, 2);
+//        e.setMatrix(new int[][] {{-2, 5}, {4, -3}});
 //        a.multiplyMatrixes(b);
 //        c.multiplyMatrixOnNumber(4);
 //        a.addMatrix(b);
 //        a.subtractMatrix(b);
-
-        e.powerMatrix(3);
+//        e.powerMatrix(3);
     }
+
     // метод, выводящий матрицу на экран
     public void getMatrix() {
         for(int row = 0; row < rows; row++){
@@ -61,26 +61,36 @@ public class Matrix {
 
     // метод, вычисляющий сумму матриц
     public void addMatrix(Matrix matrix2) {
-        Matrix result = new Matrix(this.rows, this.columns);
-        for(int row = 0; row < rows; row++) {
-            for(int column = 0; column < columns; column++) {
-                result.data[row][column] = this.data[row][column] + matrix2.data[row][column];
+        try {
+            Matrix result = new Matrix(this.rows, this.columns);
+            for(int row = 0; row < rows; row++) {
+                for(int column = 0; column < columns; column++) {
+                    result.data[row][column] = this.data[row][column] + matrix2.data[row][column];
+                }
             }
+            System.out.println("\u001B[32m Результат сложения матриц: \u001B[0m");
+            result.getMatrix();
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            System.out.println("\u001B[31m Mistake! \u001B[0m");
         }
-        System.out.println("\u001B[32m Результат сложения матриц: \u001B[0m");
-        result.getMatrix();
+
     }
 
     // метод, вычисляющий разницу матриц
     public void subtractMatrix(Matrix matrix2) {
-        Matrix result = new Matrix(this.rows, this.columns);
-        for(int row = 0; row < rows; row++) {
-            for(int column = 0; column < columns; column++) {
-                result.data[row][column] = this.data[row][column] - matrix2.data[row][column];
+        try {
+            Matrix result = new Matrix(this.rows, this.columns);
+            for(int row = 0; row < rows; row++) {
+                for(int column = 0; column < columns; column++) {
+                    result.data[row][column] = this.data[row][column] - matrix2.data[row][column];
+                }
             }
+            System.out.println("\u001B[32m Результат вычитания матриц: \u001B[0m");
+            result.getMatrix();
+        }catch (ArrayIndexOutOfBoundsException exception) {
+            System.out.println("\u001B[31m Mistake! \u001B[0m");
         }
-        System.out.println("\u001B[32m Результат вычитания матриц: \u001B[0m");
-        result.getMatrix();
+
     }
 
     // метод, транспонирующий матрицу
@@ -96,7 +106,7 @@ public class Matrix {
             newMatrix.getMatrix();
             return newMatrix;
         } catch (ArrayIndexOutOfBoundsException exception) {
-            System.out.println("\u001B[31m что-то пошло не так \u001B[0m");
+            System.out.println("\u001B[31m Mistake! \u001B[0m");
             return this;
         }
 
@@ -104,8 +114,8 @@ public class Matrix {
 
     // транспонирование матрицы для более простого умножения
     private Matrix transrose() {
-        Matrix newMatrix = new Matrix(this.columns, this.rows);
         try {
+            Matrix newMatrix = new Matrix(this.columns, this.rows);
             for (int column = 0; column < columns; column++) {
                 for (int row = 0; row < rows; row++) {
                     newMatrix.data[column][row] = this.data[row][column];
@@ -126,6 +136,7 @@ public class Matrix {
                     this.data[row][column] = this.data[row][column] * number;
                 }
             }
+            System.out.println("\u001B[32m Результат умножения матрицы на число: \u001B[0m");
             this.getMatrix();
         } catch (ArrayIndexOutOfBoundsException exception) {
             System.out.println("\u001B[31m Что-то пошло не так \u001B[0m");
@@ -134,40 +145,42 @@ public class Matrix {
 
     // метод, умножающий матрицу на матрицу
     public Matrix multiplyMatrixes(Matrix matrix) {
+        // умножать матрицы можно только тогда, когда количество столбцов первой равно количеству строк второй
         if (this.columns == matrix.rows) {
             Matrix result = new Matrix(this.rows, matrix.columns);
             Matrix tempMatrix = matrix.transrose();
             int[][] resultOfMultyply = new int[this.rows][matrix.columns];
-            List tempResultList = new ArrayList();
+            ArrayList<Integer> tempResultList = new ArrayList<Integer>();
 
+            // сначала запишем в присок построчно результат умножения матриц
             for (int row1 = 0; row1 < this.rows; row1++) { // цикл по первой матрице, по ее строкам
                 for (int row2 = 0; row2 < matrix.columns; row2++) { // цикл по строкам транспонированной матрицы
-                    int res = 0;
-//                    System.out.println("#");
+                    int resultOfMupltiply = 0;
                     for (int column = 0; column < this.columns; column++) { // цикл по колонкам (они одинаковые в любом случае)
-                        // сумма 1 и 1, сумма 1 и 2
-                        int r = this.data[row1][column] * tempMatrix.data[row2][column];
-                        res += r;
-//                        System.out.println("&" + res);
+                        // так как вторая матрица транспонирована
+                        // а по условию количество столбцов первой матрицы равно количеству строк второй
+                        // здесь сумма 1 и 1, сумма 1 и 2
+                        int tempResult = this.data[row1][column] * tempMatrix.data[row2][column];
+                        resultOfMupltiply += tempResult;
                     }
-                    tempResultList.add(res); // добаление значения в общий список
+                    tempResultList.add(resultOfMupltiply); // общий список значений результата
                 }
             }
 
+            // заполним матрцу значениями из списка
+            // так как они идут по порядку, не обязательно из одномерноего массива делать двумерный
             for (int row = 0; row < result.rows; row++) {
                 for (int column = 0; column < result.columns; column++) {
                     resultOfMultyply[row][column] = (int) tempResultList.get(row * result.columns + column);
                 }
             }
-//            System.out.println(Arrays.deepToString(resultOfMultyply));
             System.out.println("\u001B[32m Результат умножения матриц: \u001B[0m");
-
             result.setMatrix(resultOfMultyply);
             result.getMatrix();
             return result;
 
         }else {
-            System.out.println("\u001B[31m Невозможно перемножить матрицы \u001B[0m");
+            System.out.println("\u001B[31m Невозможно перемножить матрицы!! \u001B[0m");
             return this;
         }
     }
@@ -178,17 +191,14 @@ public class Matrix {
             Matrix result = new Matrix(this.rows, matrix.columns);
             Matrix tempMatrix = matrix.transrose();
             int[][] resultOfMultyply = new int[this.rows][matrix.columns];
-            List tempResultList = new ArrayList();
+            ArrayList<Integer> tempResultList = new ArrayList<Integer>();
 
             for (int row1 = 0; row1 < this.rows; row1++) { // цикл по первой матрице, по ее строкам
                 for (int row2 = 0; row2 < matrix.columns; row2++) { // цикл по строкам транспонированной матрицы
                     int res = 0;
-//                    System.out.println("#");
                     for (int column = 0; column < this.columns; column++) { // цикл по колонкам (они одинаковые в любом случае)
-                        // сумма 1 и 1, сумма 1 и 2
                         int r = this.data[row1][column] * tempMatrix.data[row2][column];
                         res += r;
-//                        System.out.println("&" + res);
                     }
                     tempResultList.add(res); // добаление значения в общий список
                 }
@@ -210,6 +220,8 @@ public class Matrix {
 
     // метод, возводящий матрицу в степень
     public void powerMatrix(int power) {
+        // возведение матрицы в степень то же самое, что умножение матрицы на саму себя определенное количество раз
+        // следовательно, возвести в степень можно только квадратную матрицу
         if (this.rows == this.columns) {
             Matrix result = this;
             int count = 1;
