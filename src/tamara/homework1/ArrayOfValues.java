@@ -14,11 +14,10 @@ public class ArrayOfValues {
     public void getElement() {
         ArrayList<Integer> massive = new ArrayList<>();
 
-        for (int i = 0; i < arrayOfValues.length; i++){
-//            for (int j = 0; j < arrayOfWeights.length; j++) {
-                for (int k = 0; k < arrayOfWeights[i]; k++) {
-                    int e = arrayOfValues[i];
-                    massive.add(e);
+        for (int i = 0; i < arrayOfValues.length; i++){ // цикл по списку элементов
+            for (int k = 0; k < arrayOfWeights[i]; k++) { // цикл по количеству весов
+                int e = arrayOfValues[i]; // добавляется столько раз, сколько значение веса
+                massive.add(e);
                 }
 //            }
         }

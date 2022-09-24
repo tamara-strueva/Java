@@ -22,9 +22,9 @@ public class Vector {
     }
 
     public Vector getVector() {
-        Vector v = this;
+        Vector vector = this;
         System.out.println("{" + this.x + "; " + this.y + "; " + this.z + "}");
-        return v;
+        return vector;
     }
 
     //метод, вычисляющий длину вектора
@@ -42,12 +42,13 @@ public class Vector {
     }
 
     //метод, вычисляющий векторное произведение с другим вектором
-    public void calculateTheVectorProduct(Vector vector2) {
-        double vectorProductX = this.y * vector2.z - this.z * vector2.y;
-        double vectorProductY = this.z * vector2.x - this.x * vector2.z;
-        double vectorProductZ = this.x * vector2.y - this.y * vector2.x;
+    public Vector calculateTheVectorProduct(Vector vector2) {
+        int vectorProductX = this.y * vector2.z - this.z * vector2.y;
+        int vectorProductY = this.z * vector2.x - this.x * vector2.z;
+        int vectorProductZ = this.x * vector2.y - this.y * vector2.x;
+        Vector newVector = new Vector(vectorProductX, vectorProductY, vectorProductZ);
         System.out.println("{" + vectorProductX + "; " + vectorProductY + "; " + vectorProductZ + "}");
-        // возвращать новый вектор?
+        return newVector;
     }
 
     // метод, вычисляющий угол между векторами
@@ -60,21 +61,23 @@ public class Vector {
     }
 
     // метод, вычисляющий сумму векторов
-    public void additionOfVectors(Vector vector2) {
-        double coordinateX = this.x + vector2.x;
-        double coordinateY = this.y + vector2.y;
-        double coordinateZ = this.z + vector2.z;
+    public Vector additionOfVectors(Vector vector2) {
+        int coordinateX = this.x + vector2.x;
+        int coordinateY = this.y + vector2.y;
+        int coordinateZ = this.z + vector2.z;
+        Vector newVector = new Vector(coordinateX, coordinateY, coordinateZ);
         System.out.println("Сумма = {" + coordinateX + "; " + coordinateY + "; " + coordinateZ + "}");
-        // возвращать новый вектор
+        return newVector;
     }
 
     // метод, вычисляющий разницу векторов
-    public void subtractionOfVectors(Vector vector2) {
-        double coordinateX = this.x - vector2.x;
-        double coordinateY = this.y - vector2.y;
-        double coordinateZ = this.z - vector2.z;
+    public Vector subtractionOfVectors(Vector vector2) {
+        int coordinateX = this.x - vector2.x;
+        int coordinateY = this.y - vector2.y;
+        int coordinateZ = this.z - vector2.z;
+        Vector newVector = new Vector(coordinateX, coordinateY, coordinateZ);
         System.out.println("Разница = {" + coordinateX + "; " + coordinateY + "; " + coordinateZ + "}");
-        // возвращать новый вектор
+        return newVector;
     }
 
     public void massiveOfVectors(int number) {
@@ -84,7 +87,6 @@ public class Vector {
                     (-15) + (int) (Math.random() * 50),(-50) + (int) (Math.random() * 50));
             massive[i] = v;
         }
-//        System.out.println(Arrays.deepToString(massive));
         for (int v = 0; v < number; v++) {
             System.out.println(massive[v].toString());
         }
