@@ -15,7 +15,7 @@ public class Test {
 //        f.getFirst5employees();
 //        System.out.println("last 3");
 //        f.getLast3employees();
-        f.saveFile("employees.txt");
-        f.loadFile("employees.txt");
+//        f.saveFile("employees.txt");
+//        f.loadFile("employees.txt");
     }
 }

@@ -26,13 +26,14 @@ public class Full {
         // проходим циклом по списку с работниками
         for (int i = 0; i < employees.size(); i++) {
             Employee emp = employees.get(i); // берется элемент из списка
-            int id = emp.getId();
-            String lastName = emp.getLastName();
-            String firstName = emp.getFirstName();
-            double salary = emp.getAverageSalary();
+            int id = emp.getId(); // вытаскиваем ID
+            String lastName = emp.getLastName(); // вытаскиваем фамилию
+            String firstName = emp.getFirstName(); // вытаскиваем имя
+            double salary = emp.getAverageSalary(); // вытаскиваем зарплату
+            // выводим данные на экран
             System.out.println("[" + id + ", " + lastName + ", " + firstName + ", " + salary + "]; ");
-            System.out.print("]");
         }
+        System.out.print("]");
     }
 
     public void sortEmployeesListMinMax() {
@@ -78,6 +79,8 @@ public class Full {
     }
 
     public void getFirst5employees(){
+        // проходим циклом по списку работников 5 раз
+        // и выводим на экран фамилию и имя
         for (int i = 0; i < 5; i++) {
             Employee emp = employees.get(i);
             String lastName = emp.getLastName();
@@ -87,6 +90,8 @@ public class Full {
     }
 
     public void getLast3employees() {
+        // проходим циклом по списку работников с конца 3 раза
+        // и выводим на экран фамилию и имя
         for (int i = employees.size()-1; i > employees.size()-4; i--) {
             Employee emp = employees.get(i);
             String lastName = emp.getLastName();
@@ -100,21 +105,25 @@ public class Full {
         try (FileWriter writer = new FileWriter(fileName, false)) {
             for (int i = 0; i < employees.size(); i++) {
                 Employee emp = employees.get(i); // берется элемент из списка
+                // вытаскиваем информацию о работнике из элемента
                 int id = emp.getId();
                 String lastName = emp.getLastName();
                 String firstName = emp.getFirstName();
                 double salary = emp.getAverageSalary();
+                // записываем в файл
                 writer.write("id: " + id + ", first name: " + firstName + ", last name: " + lastName +
                         ", salary: " + salary + "; \n");
 
             }
             writer.close();
+
+            // обработка исключений
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    // читает файл
+    // читает файл и выводит на экран
     public void loadFile (String fileName){
         try (FileReader reader = new FileReader(fileName)){
             Scanner scanner = new Scanner(reader);
@@ -122,6 +131,8 @@ public class Full {
                 System.out.println(scanner.nextLine());
             }
             reader.close();
+
+            // обработка исключений
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
