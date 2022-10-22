@@ -15,26 +15,18 @@ public class EmployeesWithHourRate extends Employee{
 
     // унаследованный метод для получения среднемесячной зарплаты
     @Override
-    double getAverageSalary() {
-        double averageSalary = 20.8 * 8 * this.rate;
-//        System.out.println("Среднемесячная зарплата работника с почасовой ставкой: " + averageSalary);
-        return averageSalary;
-    }
+    double getAverageSalary() {return 20.8 * 8 * this.rate;}
 
-    // метод, выводящий зарплпту, для сортировки списка работников
-    public double getSalary() {
-        return 20.8 * 8 * this.rate;
-    }
+    // метод, возвращающий ID
+    @Override
+    public int getId() {return this.id;}
 
-    public int getId() {
-        return this.id;
-    }
+    // метод, возвращающий фамилию
+    @Override
+    public String getLastName(){return this.lastName;}
 
-    public String getLastName() {
-        return this.lastName;
-    }
+    // метод, возвращающий имя
+    @Override
+    public String getFirstName() {return this.firstName;}
 
-    public String getFirstName() {
-        return this.firstName;
-    }
 }

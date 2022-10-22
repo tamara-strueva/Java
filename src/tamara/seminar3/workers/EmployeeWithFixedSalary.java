@@ -16,23 +16,23 @@ public class EmployeeWithFixedSalary extends Employee {
     // унаследованыый метод вывода среднемесячной зарплаты
     @Override
     double getAverageSalary() {
-//        System.out.println("Среднемесячная зарплата работника с фиксированной заработной платой: " + this.salary);
         return this.salary;
     }
 
-    // метод, выводящий зарплпту, для сортировки списка работников
-    public double getSalary() {
-        return this.salary;
-    }
-
+    // метод, возвращающий ID
+    @Override
     public int getId() {
         return this.id;
     }
 
+    // метод, возвращающий фамилию
+    @Override
     public String getLastName() {
         return this.lastName;
     }
 
+    // метод, возвращающий имя
+    @Override
     public String getFirstName() {
         return this.firstName;
     }

@@ -36,6 +36,7 @@ public class Full {
         System.out.print("]");
     }
 
+    // первая попытка сортировки (получилось наоборот, но пусть останется)
     public void sortEmployeesListMinMax() {
         employees.sort(new Comparator<Employee>() {
             @Override
