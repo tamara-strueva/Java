@@ -2,25 +2,31 @@ package tamara.seminar3.workers;
 
 public class EmployeesWithHourRate extends Employee{
     double rate;
-    String lastName, firstName;
     int id;
+    String lastName, firstName;
 
     // конструктор класса
     EmployeesWithHourRate(int id, String lastName, String firstName, double rate) {
         this.rate = rate;
+        this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.id = id;
     }
 
     // унаследованный метод для получения среднемесячной зарплаты
     @Override
-    void getAverageSalary() {
-        double averageSalary = 20.8 * 8 * this.rate;
-        System.out.println("Среднемесячная зарплата работника с почасовой ставкой: " + averageSalary);
-    }
+    double getAverageSalary() {return 20.8 * 8 * this.rate;}
 
-    public double getRate() {
-        return this.rate;
-    }
+    // метод, возвращающий ID
+    @Override
+    public int getId() {return this.id;}
+
+    // метод, возвращающий фамилию
+    @Override
+    public String getLastName(){return this.lastName;}
+
+    // метод, возвращающий имя
+    @Override
+    public String getFirstName() {return this.firstName;}
+
 }
