@@ -1,12 +1,12 @@
 package tamara.homework4;
-import java.util.*;
 import java.lang.*;
 
 public class Book {
-    String autorName, bookTitle;
+    String authorName, bookTitle;
 
-    Book (String autorName, String bookTitle) {
-        this.autorName = autorName;
+    // конструктор класса
+    Book (String authorName, String bookTitle) {
+        this.authorName = authorName;
         this.bookTitle = bookTitle;
     }
 }
