@@ -1,28 +1,13 @@
 package tamara;
 
-import tamara.homework1.*;
-import tamara.homework1.Shapes.*;
-
-import java.util.Arrays;
+import tamara.homework2.*;
 
 public class Main {
     public static void main(String[] args) {
-//        Vector v = new Vector();
-//        v.massiveOfVectors(7);
+        StringBuilderWithUndoFunction s = new StringBuilderWithUndoFunction("hello, ");
+        s.append(" world");
+//        System.out.println(s);
 
-//        Box box = new Box(900);
-//
-//        Ball ball1 = new Ball(3);
-//        Cylinder cylinder1 = new Cylinder(2, 4);
-//        Pyramid pyramid1 = new Pyramid(7, 5);
-//
-//        System.out.println(box.add(ball1));
-//        System.out.println(box.add(cylinder1));
-//        System.out.println(box.add(pyramid1));
-
-//        ArrayOfValues arr = new ArrayOfValues(new int[] {1,2,3},
-//                new int[] {1,2,10});
-//        arr.getElement();
     }
 }
 
