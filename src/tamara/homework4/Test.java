@@ -1,5 +1,8 @@
 package tamara.homework4;
 
+import tamara.controlwork.Book;
+import tamara.controlwork.Reader;
+
 public class Test {
     public static void main(String[] args) {
         Reader reader1 = new Reader("Петров В.В.", 1, "Социология",

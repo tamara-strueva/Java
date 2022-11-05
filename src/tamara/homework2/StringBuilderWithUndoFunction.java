@@ -1,8 +1,11 @@
 package tamara.homework2;
 
 public class StringBuilderWithUndoFunction {
-    // сначала надо создать интерфейс с методом void undo
-    // класс, который наследует действие от интерфейса
-    // делегат
+    StringBuilder string;
+
+    public StringBuilderWithUndoFunction(StringBuilder string) {
+        this.string = string;
+    }
     // обязательно должен быть стек (стопка тарелок)
+
 }

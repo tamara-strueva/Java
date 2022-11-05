@@ -1,4 +1,4 @@
-package tamara.homework4;
+package tamara.controlwork;
 import java.lang.*;
 
 public class Book {
