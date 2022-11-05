@@ -11,6 +11,7 @@ public class StringBuilderWithUndoFunction {
 
     public interface Command {
         void undo();
+
     }
 
     private StringBuilder stringBuilder; // делегат
