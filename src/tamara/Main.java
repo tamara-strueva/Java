@@ -4,13 +4,7 @@ import tamara.homework2.*;
 
 public class Main {
     public static void main(String[] args) {
-        StringBuilderWithUndoFunction s = new StringBuilderWithUndoFunction("hello,");
-        s.append("world");
-        System.out.println(s.toString());
-        s.replace(5, 8, "a"); // 4
-        System.out.println(s.toString());
-        s.undo();
-        System.out.println(s.toString());
+
     }
 }
 
