@@ -2,9 +2,15 @@ package tamara;
 
 import tamara.homework2.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class Main {
     public static void main(String[] args) {
-
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat my = new SimpleDateFormat("dd-MM-yyyy");
+        System.out.println(my.toPattern()); // dd-MM-yyyy
     }
 }
 
