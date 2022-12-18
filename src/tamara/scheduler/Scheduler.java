@@ -42,7 +42,7 @@ public class Scheduler {
     // Отредактировать задание (можно отредактировать название, описание, дату выполнения)
     public void editTask() {}
 
-    // Просмотреть список ВСЕХ заданий (по дате создания и выплнения)
+    // Просмотреть список ВСЕХ заданий
     public void listOfAllTasks() {
         System.out.println("\u001B[35mСписок всех задач: \u001B[0m");
         for (int i = 0; i < listOfTasks.size(); i++) {
@@ -54,6 +54,41 @@ public class Scheduler {
             System.out.println("Номер: " + number + "\nНазвание: " + name + "\nОписание: " + description +
                     "\nСтатус: " + status + "\nДата создания: " + dateCreated + "\n");
         }
+    }
+
+    // Просмотреть список ВСЕХ заданий по дате создания
+    public void listOfAllTasksCreated(String dateCreated) {
+        System.out.println("\u001B[35mСписок всех задач: \u001B[0m");
+        for (int i = 0; i < listOfTasks.size(); i++) {
+            String dateOfCreation = listOfTasks.get(i).getDateOfCreation();
+            if (dateOfCreation.equalsIgnoreCase(dateCreated)) {
+                int number = listOfTasks.get(i).getNumber();
+                String name = listOfTasks.get(i).getName();
+                String description = listOfTasks.get(i).getDescription();
+                String status = listOfTasks.get(i).getStatus();
+                System.out.println("Номер: " + number + "\nНазвание: " + name + "\nОписание: " + description +
+                        "\nСтатус: " + status + "\nДата создания: " + dateCreated + "\n");
+            }
+        }
+    }
+
+    // Просмотреть список ВСЕХ заданий по дате выплнения
+    public void listOfAllTasksToDo(String dateToDo) {
+        if (listOfTasks.size() == 0) {
+            System.out.println("Список пуст!");
+        }else {
+            System.out.println("\u001B[35mСписок всех задач: \u001B[0m");
+            for (int i = 0; i < listOfTasks.size(); i++) {
+                int number = listOfTasks.get(i).getNumber();
+                String name = listOfTasks.get(i).getName();
+                String description = listOfTasks.get(i).getDescription();
+                String status = listOfTasks.get(i).getStatus();
+                String dateCreated = listOfTasks.get(i).getDateOfCreation();
+                System.out.println("Номер: " + number + "\nНазвание: " + name + "\nОписание: " + description +
+                        "\nСтатус: " + status + "\nДата создания: " + dateCreated + "\n");
+            }
+        }
+
     }
 
     // Просмотреть список ВЫПОЛНЕННЫХ заданий по дате создания
