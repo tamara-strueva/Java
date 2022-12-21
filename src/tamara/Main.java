@@ -1,16 +1,25 @@
 package tamara;
 
-import tamara.homework2.*;
-
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat my = new SimpleDateFormat("dd-MM-yyyy");
-        System.out.println(my.toPattern()); // dd-MM-yyyy
+    public static void main(String[] args) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String s = "29/12/2022";
+        Date d = sdf.parse("29/12/2022");
+        System.out.println(d);
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = today.format(dateTimeFormatter);  //17-02-2022
+        System.out.println(formattedDate);
+
+        // вводить через сколько сделать, потом форматировать, как в конструкторе Task
     }
 }
 
