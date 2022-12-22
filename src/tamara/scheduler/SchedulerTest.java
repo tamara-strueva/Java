@@ -34,7 +34,7 @@ public class SchedulerTest {
                 String answer = scanner.nextLine(); // ожидание ввода выбора
                 if (answer.equalsIgnoreCase("д")) {
                     mySchedule.listOfAllTasks(); // вызов метода, который выводит все задачи
-                } else if (!answer.equalsIgnoreCase("н")) {
+                } else if (!answer.equalsIgnoreCase("н")) { // если некорректный ввод, выведет сообщение об ошибке
                     System.out.println("\u001B[31mЧто-то пошло не так, попробуйте снова! \u001B[0m"); // сообщение о некорректном вводе
                 }
                 if (mySchedule.listOfTasks.size() != 0) {
@@ -60,8 +60,7 @@ public class SchedulerTest {
                     mySchedule.editTask(taskName); // вызов метода
                 }
 
-
-            } else if (choice == 4) { // посмотреть список всех задач (1 абсолютно 2 по дате создания 3 по дате выполнения)
+            } else if (choice == 4) { // посмотреть список всех задач (1 всех 2 по дате создания 3 по дате выполнения)
                 scanner.nextLine(); // техническая строка, чтобы после ввода числа ожидался ввод строки
                 System.out.println("Вы хотите посмотреть " +
                         "\n  1 - список ВСЕХ задач, созданных ранее" +
@@ -86,7 +85,6 @@ public class SchedulerTest {
                 } catch (InputMismatchException exception) { // обработка исключения, если будет введена строка, а не число
                     System.out.println("\u001B[31mВведите число! \u001B[0m"); // сообщение о некорректном вводе
                 }
-
 
             } else if (choice == 5) { // посмотреть список выполненных заданий (1 абсолютно 2 по дате создания 3 по дате выполнения)
                 scanner.nextLine(); // техническая строка, чтобы после ввода числа ожидался ввод строки
@@ -114,7 +112,6 @@ public class SchedulerTest {
                     System.out.println("\u001B[31mВведите число! \u001B[0m"); // сообщение о некорректном вводе
                 }
 
-
             } else if (choice == 6) { // посмотреть список невыполненных заданий (1 абсолютно 2 по дате создания 3 по дате выполнения)
                 scanner.nextLine(); // техническая строка, чтобы после ввода числа ожидался ввод строки
                 System.out.println("Вы хотите посмотреть " +
@@ -140,7 +137,6 @@ public class SchedulerTest {
                 } catch (InputMismatchException exception) { // обработка исключения, если будет введена строка, а не число
                     System.out.println("\u001B[31mВведите число! \u001B[0m"); // сообщение о некорректном вводе
                 }
-
 
             } else if (choice == 7) { // посмотреть детальную информацию о задании
                 scanner.nextLine(); // техническая строка, чтобы после ввода числа ожидался ввод строки

@@ -55,10 +55,10 @@ public class Scheduler {
                         System.out.println("\u001B[32mЗадача успешно создана! \u001B[0m \n"); // сообщение об успешном создании задания
                         break;
                     } else {
-                        System.out.println("\u001B[31mДата не должна быть раньше сегодня! \u001B[0m"); // сообщение об ошибке при попытке задать прошедшую дату
+                        System.out.println("\u001B[31mДата не должна быть раньше сегодня! \u001B[0m \n"); // сообщение об ошибке при попытке задать прошедшую дату
                     }
                 } catch (ParseException e) {
-                    System.out.println("\u001B[31mНекорректный ввод! \u001B[0m \n"); // обработка исключения при ошибочном вводе даты
+                    System.out.println("\u001B[31mНекорректный ввод даты! \u001B[0m \n"); // обработка исключения при ошибочном вводе даты
                 }
 
             }
@@ -134,71 +134,71 @@ public class Scheduler {
             }
         }
         listOfTasks.remove(task);
+        System.out.println("\u001B[32mЗадача успешно удалена! \u001B[0m \n");
         return listOfTasks;
     }
 
     // Отредактировать задание (можно отредактировать название, описание, дату выполнения)
     public void editTask(String name) throws ParseException { // сначало вопрос, что Вы хотите изменить
+        Scanner scan = new Scanner(System.in);
+        ArrayList<Task> tasks = new ArrayList<>(); // вспомогательный список, если несклько задач с одинаковыми названиями (аналогично с удалением)
+        for (int i = 0; i < listOfTasks.size(); i++) {
+            if (listOfTasks.get(i).getName().equalsIgnoreCase(name)) {
+                tasks.add(listOfTasks.get(i));
+            }
+        }
+
+        Task task = null;
+        if (tasks.size() == 0) { // если вспомогательный список пустой, то нет задач с таким именем
+            System.out.println("\u001B[31mСовпадений не найдено \u001B[0m");
+            return;
+        } else if (tasks.size() == 1) { // если нашлось 1 совпадение, то его мы и искали в общем списке
+            task = tasks.get(0);
+        } else { // если же совпадений оказалось больше, то их выведут и предложат выбор
+            System.out.println("\u001B[32mСписок совпадений: \u001B[0m");
+            for (int i = 0; i < tasks.size(); i++) {
+                int number = tasks.get(i).getNumber();
+                String taskName = tasks.get(i).getName();
+                String description = tasks.get(i).getDescription();
+                String status = tasks.get(i).getStatus();
+                if (status.equalsIgnoreCase("не выполнено")) {
+                    status = "\u001B[31mне выполнено\u001B[0m";
+                } else if (status.equalsIgnoreCase("выполнено")) {
+                    status = "\u001B[32mвыполнено\u001B[0m";
+                }
+                String dateCreated = tasks.get(i).getDateOfCreation();
+                String dateDo = tasks.get(i).getDateToComplete();
+                if (dateDo == null) {
+                    dateDo = "Дата не установлена";
+                }
+                System.out.println("Номер: " + number + "\nНазвание: " + taskName + "\nОписание: " + description +
+                        "\nСтатус: " + status + "\nДата создания: " + dateCreated + "\nДата выполнения: " +
+                        dateDo + "\n");
+            }
+
+            try {
+                System.out.println("\u001B[36mВведите номер задачи, которую хотите редактировать: \u001B[0m");
+                int choice = scan.nextInt();
+                boolean check = true;
+                for (int item = 0; item < tasks.size(); item++) {
+                    if (tasks.get(item).getNumber() == choice) {
+                        task = tasks.get(item); // выбрано нужное задание
+                        check = false;
+                        break;
+                    }
+                }
+                if (check) {
+                    System.out.println("\u001B[31m ");
+                }
+            } catch (InputMismatchException exception) { // если при выборе задания было введено не число, выведет сообщение об ошибке
+                System.out.println("\u001B[31mВведите число! \u001B[0m");
+            }
+        }
         System.out.println("Что Вы хотите изменить? \n 1 - описание \n 2 - название \n 3 - статус " +
                 "\n 4 - дату выполнения \n\u001B[36mВведите цифру: \u001B[0m");
-        Scanner scan = new Scanner(System.in);
+
         try { // ввод выбора и обработка исключения при некорректном вводе
             int option = scan.nextInt();
-
-            ArrayList<Task> tasks = new ArrayList<>(); // вспомогательный список, если несклько задач с одинаковыми названиями (аналогично с удалением)
-            for (int i = 0; i < listOfTasks.size(); i++) {
-                if (listOfTasks.get(i).getName().equalsIgnoreCase(name)) {
-                    tasks.add(listOfTasks.get(i));
-                }
-            }
-
-            Task task = null;
-            if (tasks.size() == 0) { // если вспомогательный список пустой, то нет задач с таким именем
-                System.out.println("\u001B[31mСовпадений не найдено \u001B[0m");
-                return;
-            } else if (tasks.size() == 1) { // если нашлось 1 совпадение, то его мы и искали в общем списке
-                task = tasks.get(0);
-            } else { // если же совпадений оказалось больше, то их выведут и предложат выбор
-                System.out.println("\u001B[32mСписок совпадений: \u001B[0m");
-                for (int i = 0; i < tasks.size(); i++) {
-                    int number = tasks.get(i).getNumber();
-                    String taskName = tasks.get(i).getName();
-                    String description = tasks.get(i).getDescription();
-                    String status = tasks.get(i).getStatus();
-                    if (status.equalsIgnoreCase("не выполнено")) {
-                        status = "\u001B[31mне выполнено\u001B[0m";
-                    } else if (status.equalsIgnoreCase("выполнено")) {
-                        status = "\u001B[32mвыполнено\u001B[0m";
-                    }
-                    String dateCreated = tasks.get(i).getDateOfCreation();
-                    String dateDo = tasks.get(i).getDateToComplete();
-                    if (dateDo == null) {
-                        dateDo = "Дата не установлена";
-                    }
-                    System.out.println("Номер: " + number + "\nНазвание: " + taskName + "\nОписание: " + description +
-                            "\nСтатус: " + status + "\nДата создания: " + dateCreated + "\nДата выполнения: " +
-                            dateDo + "\n");
-                }
-
-                try {
-                    scan.nextLine();
-                    System.out.println("\u001B[36mВведите номер задачи, которую хотите редактировать: \u001B[0m");
-                    int choice = scan.nextInt();
-                    boolean check = true;
-                    for (int item = 0; item < tasks.size(); item++) {
-                        if (tasks.get(item).getNumber() == choice) {
-                            task = tasks.get(item); // выбрано нужное задание
-                            check = false;
-                            break;
-                        }
-                    }
-                    if (check) {
-                        System.out.println("\u001B[31m ");
-                    }
-                } catch (InputMismatchException exception) { // если при выборе задания было введено не число, выведет сообщение об ошибке
-                    System.out.println("\u001B[31mВведите число! \u001B[0m");
-                }
-            }
 
             if (option == 1) { // редактировать описание
                 scan.nextLine();
@@ -523,9 +523,9 @@ public class Scheduler {
                     String info = tasks.get(i).getDescription();
                     // в строке 0 сиволов или значение null или нет символов после удаления пробелов в начале и в конце
                     if (info == null || info.length() == 0 || info.trim().isEmpty())  {
-                        System.out.println("Название задачи: " + tasks.get(i).getName() + " Нет описания\n");
+                        System.out.println("Название задачи - " + tasks.get(i).getName() + ": " + " Нет описания\n");
                     } // в остальных случааях вернется описание без пробелов в начале и в конце
-                    System.out.println("Название задачи: " + tasks.get(i).getName() + info.trim() + "\n");
+                    System.out.println("Название задачи - " + tasks.get(i).getName() + ": " + info.trim() + "\n");
                 }
             }
         }
