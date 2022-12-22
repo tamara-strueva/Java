@@ -5,11 +5,11 @@ public class RootOfEquation {
         solve(0, 10);
     }
 
-    public static double function(double x) {
+    public static double function(double x) { // задали уравнение функцией
         return Math.cos(Math.pow(x, 5)) + Math.pow(x, 4) - 345.3 * x - 23;
     }
 
-    public static double solve(double start, double stop) {
+    public static double solve(double start, double stop) { // метод решения уравнения с границами
         if (function(start)*function(stop) < 0) { // если значения функции в концах отрезка различны по знаку, то выполняется решение
             if ((start - stop) >= 0.0001){ // если больше некоторого маленького числа, то вернет меньшее
             return start;
@@ -20,11 +20,11 @@ public class RootOfEquation {
             if (function(start) * function(middle) > 0) { // если произведение больше нуля, то значения одного знака
                 // 1 f(start) > 0, f(middle) > 0 => f(stop) < 0 => [middle, stop]
                 // 2 f(start) < 0, f(middle) < 0 => f(stop) > 0 => [middle, stop]
-                return solve(middle, stop);
+                return solve(middle, stop); // вызывааем метод решения, но с измененными границами
             } else {
                 // 1 f(start) > 0, f(middle) > 0 => f(stop) < 0 => [start, middle]
                 // 2 f(start) < 0, f(middle) < 0 => f(stop) > 0 => [start, middle]
-                return solve(start, middle);
+                return solve(start, middle); // вызывааем метод решения, но с измененными границами
             }
         } // в ином случае вернется значение за пределами отрезка
         return start - 1;
