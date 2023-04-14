@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/2000/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Pizza</title> 
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+</head>
+
+<body>
+    <h1>Оформление доставки</h1>
+    <img th:src="@{/images/pizza.jpg}"/>
+
+     <form th:action="@{/orders}" method="post" th:object="${orderPizza}"> 
+        <a th:href="@{/design}" id="another">Создать еще одну пиццу</a>
+        <h3>В заказе:</h3>
+        <ul>
+            <li th:each="pizza: ${orderPizza.pizzas}">
+                <span th:text="${pizza.name}">pizza name</span>
+            </li>
+        </ul>
+
+        <div th:if="${#fields.hasErrors()}">
+            <span class="validationError">
+                Пожалуйста исправьте форму
+                <ul>
+                    <li th:each="err : ${#fields.errors()}" th:text="${err}">
+                </ul>
+            </span>
+        </div>
+ 
+        <h3>Оформление доставки</h3>
+
+        <div >
+            <lable>Имя</lable>
+            <input type="text" th:field="*{deliveryName}" th:class="${#fields.hasErrors('deliveryName')}? fieldError">
+        </div>
+        
+        <div>
+            <lable for="deliveryStreet">Улица</lable>
+            <input type="text" th:field="*{deliveryStreet}" th:class="${#fields.hasErrors('deliveryStreet')}? fieldError">
+        </div>
+        
+        <div>
+            <lable for="deliveryCity">Город</lable>
+            <input type="text" th:field="*{deliveryCity}" th:class="${#fields.hasErrors('deliveryCity')}? fieldError">
+        </div>
+        
+        <h4>Данные карты</h4>
+
+        <lable for="ccNumber">Номер карты</lable>
+        <input type="text" th:field="*{ccNumber}" th:class="${#fields.hasErrors('ccNumber')}? fieldError">
+        <!-- почему-то правильный номер карты только 16 нулей -->
+
+        <lable for="ccExpiration">ММ/ГГ</lable>
+        <input type="text" th:field="*{ccExpiration}" th:class="${#fields.hasErrors('ccExpiration')}? fieldError">
+
+        <lable for="ccCVV">CVV</lable>
+        <input type="text" th:field="*{ccCVV}" th:class="${#fields.hasErrors('ccCVV')}? fieldError">
+       
+        <div>
+            <input type="submit">
+        </div>
+    </form> 
+
+</body>
+</html>
