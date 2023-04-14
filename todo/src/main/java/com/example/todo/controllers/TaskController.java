@@ -24,21 +24,25 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+    // сохранение задания 
     @PostMapping("/")
     public void save(@RequestBody Task task) { // @RequestBody чтоб не было null
         taskService.saveTask(task);
     }
 
+    // получение списка всех заданий
     @GetMapping("")
     public List<Task> getAll() {
         return taskService.getAllTasks();
     }
 
+    // удаление задания
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         taskService.deleteTaskById(id);
     }
 
+    // получение задания по id
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Integer id) {
         try{
@@ -50,6 +54,7 @@ public class TaskController {
         }
     }
 
+    // редактирование задания
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@RequestBody Task task, @PathVariable Integer id) {
         try{

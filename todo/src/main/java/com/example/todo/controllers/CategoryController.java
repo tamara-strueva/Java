@@ -18,26 +18,30 @@ import com.example.todo.models.Category;
 import com.example.todo.services.CategoryService;
 
 @RestController
-@RequestMapping
+@RequestMapping("categories")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
+    // сохранение категории
     @PostMapping("/")
     public void save(@RequestBody Category category) {
         categoryService.saveCategory(category);
     }
 
+    // получение списка всех категорий
     @GetMapping("")
     public List<Category> getAll() {
         return categoryService.getAllCategories();
     }
 
+    // удаление категории
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         categoryService.deleteCategoryById(id);
     }
 
+    // получение категории по id
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Integer id) {
         try{

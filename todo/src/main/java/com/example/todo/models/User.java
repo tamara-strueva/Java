@@ -12,12 +12,12 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
-@Data
-@Table(name="users")
-@Entity
-public class User { // сущность пользователя
+@Data // позволяет не писать конструктор, геттеры и сеттеры
+@Table(name="users") // связь с таблицей БД
+@Entity // сущность пользователя
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // генерирует id
     private int id;
     private String login;
     private String firstName; // имя
@@ -25,11 +25,11 @@ public class User { // сущность пользователя
     private String lastName; // фамилия
     private Date birthDate;
 
+    // связь с заданием
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<Task> tasks; // как заполнять
 
-    // прописать метод добавдения по id??
-
+    // метод для изменения 1 или нескольких атрибутов пользователя
     public void updateUser(User user) { // метод для редактироания или дополнения пользователя
         if (user.firstName != null) {
             this.firstName = user.firstName;

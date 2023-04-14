@@ -18,27 +18,31 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.todo.models.User;
 import com.example.todo.services.UserService;
 
-@RestController
-@RequestMapping("/users")
+@RestController // аннотация контроллера
+@RequestMapping("/users") // по такому адресу будут производиться запросы
 public class UserController {
     @Autowired
     private UserService userService;
 
+    // добавление пользователя (с клиента на сервер)
     @PostMapping("/")
     public void save(@RequestBody User user) {
         userService.saveUser(user);
     }
 
+    // получение списка всех пользователей (с сервера на клиента)
     @GetMapping("")
     public List<User> getAll() {
         return userService.getAllUsers();
     }
 
+    // удаление пользователя
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
         userService.deleteUserById(id);
     }
 
+    // получение данных с сервера про 1 клиента по id
     @GetMapping("/{id}")
     public ResponseEntity<?> getById(@PathVariable Integer id) {
         try{
@@ -50,6 +54,13 @@ public class UserController {
         }
     }
 
+    // получение данных с сервера про 1 клиента по имени
+    @GetMapping("/{name}")
+    public List<User> getByFirstName(@PathVariable String firstName) {
+        return userService.getUsersByFirstName(firstName);
+    }
+
+    // редактирование клиента (1 или нескольких атрибутов) по id
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@RequestBody User user, @PathVariable Integer id) {
         try{

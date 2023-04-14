@@ -16,8 +16,8 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
-@Table(name="tasks")
-@Entity
+@Table(name="tasks") // связь с таблицей БД
+@Entity // сущность задания
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,12 +27,12 @@ public class Task {
     private Date dateToDo;
     private Boolean completed;
  
-    // пользователь
+    // связь с пользователем
     @ManyToOne // у 1 пользователя может быть много заданий
     @JoinColumn(name = "user_id", nullable = false)
     private User user; 
 
-    // категория
+    // связь с категориями
     @ManyToMany 
     @JoinColumn(name = "category_id")
     private Set<Category> categories; 
