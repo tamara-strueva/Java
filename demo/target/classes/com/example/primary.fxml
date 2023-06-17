@@ -8,12 +8,15 @@
 
 <VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PrimaryController">
    <children>
-      <!-- <Label text="Primary View" /> -->
-      <TextField fx:id="myTextField" promptText="Enter text here" />
-      <!-- <Button fx:id="primaryButton" text="Switch to Secondary View" onAction="#switchToSecondary"/> -->
+      <Label text="Введите нижнюю границу диапазона чисел:"  />
+      <TextField fx:id="lowerBound" promptText="Введите нижнюю границу диапазона чисел:" />
+      <Label text="Введите верхнюю границу диапазона чисел:"  />
+      <TextField fx:id="upperBound" promptText="Введите верхнюю границу диапазона чисел:" />
+      <Button fx:id="generate" onAction="#showNumbers" text="Показать результат" />
       <!-- <TextField fx:id="myTextField" promptText="input: "/> -->
       <!-- <TextField fx:id="myTextField" /> -->
-      <Button fx:id="myButton" onAction="#handleButtonClick" text="print"/>
+      <!-- <Button fx:id="myButton" onAction="#handleButtonClick" text="print"/> -->
+      <TextField fx:id="resultShow" text="" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
